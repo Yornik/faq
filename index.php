@@ -2,10 +2,10 @@
 require_once('Database.php');
 
 $db = new Database(faqapp, faqapp, bmS7GXQPLaJrFvxgZMBM8TvJQXAN9dknK2R3RU4DSmYALT84sTz6aqsHqvJQS6efRVAFYs);
-$QAarray = $db->select(QA, '*', 200, 'category ASC')->count();
-Echo $QAarray
+$QAarray = $db->select(QA,"id != 0", 200, 'category ASC')->result_array();
+var_dump($QAarray);
 ?>
-'faqapp'@'localhost' IDENTIFIED BY 'bmS7GXQPLaJrFvxgZMBM8TvJQXAN9dknK2R3RU4DSmYALT84sTz6aqsHqvJQS6efRVAFYs'
+
 <!doctype html>
 <html lang="en">
 <head>
