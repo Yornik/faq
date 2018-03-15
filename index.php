@@ -3,22 +3,22 @@ require_once('Database.php');
 
 $db = new Database(faqapp, faqapp, bmS7GXQPLaJrFvxgZMBM8TvJQXAN9dknK2R3RU4DSmYALT84sTz6aqsHqvJQS6efRVAFYs);
 $QAarray = $db->select(QA,"id != 0", 200, 'category ASC')->result_array();
-var_dump($QAarray);
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Accordion - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FAQ Yornik Heyl</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $( function() {
-            $( "#accordion" ).accordion({
-                collapsible: true
+            $( "#accordion,#accordion-inner" ).accordion({
+                collapsible: true,
+                heightStyle: "content"
             });
         } );
     </script>
@@ -27,60 +27,20 @@ var_dump($QAarray);
 
 <div id="accordion">
     <?php
+    $addedCategory=array();
     foreach ($QAarray as $question){
-        echo "<h3>{$question["category"]}</h3>";
-        echo "<div id=\"accordion\">";
-        echo "<h3>{$question["question"]}</h3>";
-        echo "<div><P>{$question["answer"]}</P></div>";
-        echo "</div>";
+        if(!in_array($question["category"],$addedCategory)){
+            if($addedCategory != null){
+                echo "</div> \n \n";
+            }
+            echo "<h3>{$question["category"]}</h3>";
+            array_push($addedCategory, $question["category"]);
+            echo "<div id=\"accordion-inner\"> \n";
+        }
+        echo "<h3>{$question["question"]}</h3> \n";
+        echo "<div><P>{$question["answer"]}</P></div> \n";
     }
     ?>
-  <h3>IT (category 1)</h3>
-  <div>
-    <p>
-        $QAarray
-    </p>
-  </div>
-
-  <h3>Section 2</h3>
-  <div>
-    <p>
-Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-    suscipit faucibus urna.
-    </p>
-  </div>
-  <h3>Section 3</h3>
-  <div>
-    <p>
-Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-    </p>
-    <ul>
-      <li>List item one</li>
-      <li>List item two</li>
-      <li>List item three</li>
-    </ul>
-  </div>
-  <h3>Section 4</h3>
-  <div>
-    <p>
-Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
 </div>
-
-
 </body>
 </html>

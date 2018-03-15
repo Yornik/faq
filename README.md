@@ -10,7 +10,7 @@ username and password.
 # todo list
 - [x] Added a git repo to work in.
 - [ ] Make a basic system where I can add,edit and remove  qestions and anwsers in a database.
-- [ ] Display those q&a in the website.
+- [X] Display those q&a in the website.
 - [ ] Make sure we sanetize those answers and qestions on scripting an mysql qeuries (NO NASTY SHIT ON MY WATCH)
 - [ ] Add catogries to the database and to the qa
 - [ ] Sort them at catogries and use dropdown menus
