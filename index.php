@@ -53,9 +53,9 @@ return $data;
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FAQ Yornik Heyl</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="jquery-ui.min.css">
+  <script src="jquery-1.12.4.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
     <script>
         $( function() {
             $( "#accordion,#accordion-inner" ).accordion({
@@ -99,7 +99,7 @@ category: <input type="number" name="categoryinput" value="<?php echo $categoryi
     ?>
 </div>
 </div>
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Under_construction_graphic.gif" alt="Actually, this is the most annoying thing in the universe." >
+<img src="Under_construction_graphic.gif" alt="Actually, this is the most annoying thing in the universe." >
 
 
 </body>
