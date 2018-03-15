@@ -15,20 +15,24 @@ var_dump($QAarray);
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-$( function() {
-    $( "#accordion" ).accordion();
-} );
-  </script>
+    <script>
+        $( function() {
+            $( "#accordion" ).accordion({
+                collapsible: true
+            });
+        } );
+    </script>
 </head>
 <body>
 
 <div id="accordion">
     <?php
-    foreach (QAarray as $question){
+    foreach ($QAarray as $question){
         echo "<h3>{$question["category"]}</h3>";
-        echo "<div> <P> {$question["question"]} </P> </div>>";
-        echo "<div> <P> {$question["answer"]}</P> </div>>";
+        echo "<div id=\"accordion\">";
+        echo "<h3>{$question["question"]}</h3>";
+        echo "<div><P>{$question["answer"]}</P></div>";
+        echo "</div>";
     }
     ?>
   <h3>IT (category 1)</h3>
