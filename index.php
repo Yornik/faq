@@ -24,15 +24,20 @@ $( function() {
 <body>
 
 <div id="accordion">
-  <h3>Section 1</h3>
+    <?php
+    foreach (QAarray as $question){
+        echo "<h3>{$question["category"]}</h3>";
+        echo "<div> <P> {$question["question"]} </P> </div>>";
+        echo "<div> <P> {$question["answer"]}</P> </div>>";
+    }
+    ?>
+  <h3>IT (category 1)</h3>
   <div>
     <p>
-Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+        $QAarray
     </p>
   </div>
+
   <h3>Section 2</h3>
   <div>
     <p>
