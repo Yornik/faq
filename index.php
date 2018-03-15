@@ -68,19 +68,19 @@ return $data;
 <body>
 
 <div id="accordion">
-    <h3>Add an entry</h3>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        Question: <textarea name="questioninput" rows="5" cols="40"><?php echo $questioninput;?></textarea>
-        <span class="error">* <?php echo $questionErr;?></span>
-        <br><br>
-        Answer: <textarea name="answerinput" rows="5" cols="40"><?php echo $answerinput;?></textarea>
-        <span class="error">* <?php echo $answerErr;?></span>
-        <br><br>
-        category: <input type="number" name="categoryinput" value="<?php echo $categoryinput;?>">
-        <span class="error">* <?php echo $categoryErr;?></span>
-        <br><br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
+<h3>Add an entry</h3>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+Question:<textarea name="questioninput" rows="5" cols="40"><?php echo $questioninput;?></textarea>
+<span class="error">* <?php echo $questionErr;?></span>
+<br><br>
+Answer:<textarea name="answerinput" rows="5" cols="40"><?php echo $answerinput;?></textarea>
+<span class="error">* <?php echo $answerErr;?></span>
+<br><br>
+category: <input type="number" name="categoryinput" value="<?php echo $categoryinput;?>">
+<span class="error">* <?php echo $categoryErr;?></span>
+<br><br>
+<input type="submit" name="submit" value="Submit">
+</form>
 
     <?php
     $addedCategory=array();
@@ -98,8 +98,8 @@ return $data;
     }
     ?>
 </div>
-
-
+</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Under_construction_graphic.gif" alt="Actually, this is the most annoying thing in the universe." >
 
 
 </body>
