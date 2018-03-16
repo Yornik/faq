@@ -12,12 +12,10 @@ if ($conn->connect_error) {
 }
 
 // sql to create table
-$sql = "CREATE TABLE Users (
+$sql = "CREATE TABLE Users2 (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-name VARCHAR(30) NOT NULL,
-passwd VARCHAR(30) NOT NULL,
-salt VARCHAR(50),
-reg_date TIMESTAMP
+name VARCHAR(255) NOT NULL,
+pass VARCHAR(255) NOT NULL,
 )";
 
 if ($conn->query($sql) === TRUE) {

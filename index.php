@@ -4,9 +4,11 @@ require_once('Database.php');
 //reading the database (should make a install script so you can change the password and db/username.
 $db = new Database(faqapp, faqapp, bmS7GXQPLaJrFvxgZMBM8TvJQXAN9dknK2R3RU4DSmYALT84sTz6aqsHqvJQS6efRVAFYs);
 $QAarray = $db->select(QA,"id != 0", 200, 'category ASC')->result_array();
+$Userarray = $db->select(Users2,"id != 0", 200)->result_array();
+echo var_dump($Userarray);
 
 $questionErr = $answerErr = $categoryErr = '';
-$questioninput = $answerinput =  $categoryinput =  '';
+$questioninput = $answerinput =  $categoryinput = $addnameinput = $addpassinput = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["questioninput"])) {
@@ -37,6 +39,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             )
         );
         header('Refresh: 0');
+    }
+
+
+    $addnameinput = test_input($_POST["addnameinput"]);
+    $addpassinput = test_input(password_hash($_POST["addpassinput"]));
+    if (!empty($addnameinput) and !empty($addpassinput)){
+        $db->insert(
+            'User2',
+            array(
+                'name' => $addnameinput,
+                'pass' => $addpassinput,
+            )
+        );
     }
 }
 
@@ -82,6 +97,16 @@ category: <input type="number" name="categoryinput" value="<?php echo $categoryi
 <br><br>
 <input type="submit" name="submit" value="Submit">
 </form>
+
+    <h3>Add an user</h3>
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        Email: <input type="text" name="addnameinput"><br>
+        Password: <input type="password" name="addpasswordinput" maxlength="18"><br>
+        <span class="error">* <?php echo $addPassErr;?></span>
+        <br>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+
 
     <?php
     $addedCategory=array();
