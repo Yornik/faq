@@ -38,9 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'category' => $categoryinput
             )
         );
-        //header('Refresh: 0');
+        header('Refresh: 0');
     }
-
 
     $addnameinput = test_input($_POST["addnameinput"]);
     $addpassinput = test_input(password_hash($_POST["addpasswordinput"]));
@@ -49,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'Users2',
             array(
                 'name' => $addnameinput,
-                'pass' => $addpassinput,
+                'pass' => $addpassinput
             )
         );
     }
@@ -95,16 +94,16 @@ Answer:<textarea name="answerinput" rows="5" cols="40"><?php echo $answerinput;?
 category: <input type="number" name="categoryinput" value="<?php echo $categoryinput;?>">
 <span class="error">* <?php echo $categoryErr;?></span>
 <br><br>
-<input type="submit" name="submit" value="Submit">
+<input type="submit" name="submit0" value="Submit">
 </form>
 
-    <h3>Add an user</h3>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        Name: <input type="text" name="addnameinput"><br>
-        Password: <input type="password" name="addpasswordinput" maxlength="18"><br>
-        <br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
+<h3>Add an user</h3>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    Name: <input type="text" name="addnameinput"><br>
+    Password: <input type="password" name="addpasswordinput" maxlength="18"><br>
+    <br>
+    <input type="submit" name="submit1" value="Submit">
+</form>
 
 
     <?php
