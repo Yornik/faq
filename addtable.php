@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 $sql = "CREATE TABLE Users2 (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 name VARCHAR(255) NOT NULL,
-pass VARCHAR(255) NOT NULL,
+pass VARCHAR(255) NOT NULL
 )";
 
 if ($conn->query($sql) === TRUE) {
