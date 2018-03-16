@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'category' => $categoryinput
             )
         );
-        header('Refresh: 0');
+        //header('Refresh: 0');
     }
 
 
