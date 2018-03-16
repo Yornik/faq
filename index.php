@@ -101,7 +101,7 @@ category: <input type="number" name="categoryinput" value="<?php echo $categoryi
 <h3>Add an user</h3>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     Name: <input type="text" name="addnameinput" value="<?php echo $addnameinput;?>"><br>
-    Password: <input type="password" id="addpasswordinput" maxlength="18" value="<?php echo $addpasswordinput;?>><br>
+    Password: <input type="password" id="addpasswordinput" maxlength="18" value="<?php echo $addpasswordinput;?>"><br>
     <br>
     <input type="submit" name="submit1" value="Submit">
 </form>
