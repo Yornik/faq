@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $addpassinput = test_input(password_hash($_POST["addpassinput"]));
     if (!empty($addnameinput) and !empty($addpassinput)){
         $db->insert(
-            'User2',
+            'Users2',
             array(
                 'name' => $addnameinput,
                 'pass' => $addpassinput,
