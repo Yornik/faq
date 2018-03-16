@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $addnameinput = test_input($_POST["addnameinput"]);
-    $addpasswordinput = test_input(password_hash($_POST["addpasswordinput"]));
+    $addpasswordinput = password_hash($_POST["addpasswordinput"]);
     var_dump($addpasswordinput);
     var_dump($addnameinput);
     if (!empty($addnameinput) and !empty($addpasswordinput)){
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'Users2',
             array(
                 'name' => $addnameinput,
-                'pass' => addpasswordinput
+                'pass' => $addpasswordinput
             )
         );
         header('Refresh: 0');
