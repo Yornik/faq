@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $addnameinput = test_input($_POST["addnameinput"]);
-    $addpasswordinput = password_hash($_POST["addpasswordinput"]);
+    $addpasswordinput = password_hash($_POST["addpasswordinput"], PASSWORD_DEFAULT);
     var_dump($addpasswordinput);
     var_dump($addnameinput);
     if (!empty($addnameinput) and !empty($addpasswordinput)){
