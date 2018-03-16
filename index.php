@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $addnameinput = test_input($_POST["addnameinput"]);
-    $addpassinput = test_input(password_hash($_POST["addpassinput"]));
+    $addpassinput = test_input(password_hash($_POST["addpasswordinput"]));
     if (!empty($addnameinput) and !empty($addpassinput)){
         $db->insert(
             'Users2',
@@ -100,9 +100,8 @@ category: <input type="number" name="categoryinput" value="<?php echo $categoryi
 
     <h3>Add an user</h3>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        Email: <input type="text" name="addnameinput"><br>
+        Name: <input type="text" name="addnameinput"><br>
         Password: <input type="password" name="addpasswordinput" maxlength="18"><br>
-        <span class="error">* <?php echo $addPassErr;?></span>
         <br>
         <input type="submit" name="submit" value="Submit">
     </form>
