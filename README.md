@@ -18,7 +18,7 @@ username and password.
 - [X] Adding users and the Hashed (maybe also salted) passwords to the database
 - [X] Login system where only logged in users can edit, add, delete the questions or the users
 - [X] Make sure we cant do "evil" stuff with the login system.
-- [ ] Add upload function to the website for media and a way to link those to the questions and show them in there.
+- [X] Add upload function to the website for media and a way to link those to the questions and show them in there.
 - [ ] Documentation and code comments.
 - [ ] Refactor the code.
 - [ ] We should present a nice install script.(maybe docker container, linux packages or something else)

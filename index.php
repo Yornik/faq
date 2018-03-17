@@ -13,27 +13,6 @@ $QAarray = $db->select('QA',"id != 0", 2000, 'category ASC')->result_array();
 $questionErr = $answerErr = $categoryErr = '';
 $passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $namelogin = $db->escape(strip_input($_POST["namelogin"]));
-    if(!empty($namelogin)){
-        $passwordlogin = strip_input($_POST["passwordlogin"]);
-    $Userarray = $db->select(Users2,"name = '$namelogin'", 1)->row();
-    if(password_verify($passwordlogin, $Userarray->pass)) {
-        $_SESSION['username'] = $namelogin;
-        header('Refresh: 0');
-    }
-    else{
-        echo "login failed";
-    }}
-}
-
-function strip_input($data) {
-$data = trim($data);
-$data = stripslashes($data);
-$data = htmlentities($data);
-return $data;
-}
 ?>
 
 <!doctype html>
@@ -83,7 +62,7 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
 </form>
     <?php }else{ ?>
 <h3>Login as a user</h3>
-<form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
+<form method="post" action="login.php">
     Name: <input type="text" name="namelogin" ><br>
     Password: <input type="password" name="passwordlogin"><br>
     <br>
