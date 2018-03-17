@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $namelogin = test_input($_POST["namelogin"]);
-    $Userarray = $db->select(Users2,"name != $namelogin", 1)->result_array();
+    $Userarray = $db->select(Users2,"name == $namelogin", 1)->result_array();
     if (password_verify($_POST["passwordlogin"], $Userarray["pass"])) {
         $_SESSION['username'] = $namelogin;
         header("location: welcome.php");
