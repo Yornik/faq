@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Refresh: 0');
     }
 
-    $addnameinput = test_input($_POST["addnameinput"]);
+/*    $addnameinput = test_input($_POST["addnameinput"]);
     $addpasswordinput = password_hash($_POST["addpasswordinput"], PASSWORD_DEFAULT);
     if (!empty($addnameinput) and !empty($addpasswordinput)){
         $db->insert(
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             )
         );
         header('Refresh: 0');
-    }
+    }*/
 
 //    $namelogin = test_input($_POST["namelogin"]);
 //    $passwordlogin = test_input($_POST["passwordlogin"]);
