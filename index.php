@@ -1,53 +1,23 @@
 <?php
 
-/*session_start([
+session_start([
     'cookie_lifetime' => 86400,
-]);*/
+]);
 
 require_once('Database.php');
+include('dbconnection.php');
 
-//reading the database (should make a install script so you can change the password and db/username.
-$db = new Database(faqapp, faqapp, bmS7GXQPLaJrFvxgZMBM8TvJQXAN9dknK2R3RU4DSmYALT84sTz6aqsHqvJQS6efRVAFYs);
-$QAarray = $db->select(QA,"id != 0", 200, 'category ASC')->result_array();
 
+$QAarray = $db->select('QA',"id != 0", 200, 'category ASC')->result_array();
 
 $questionErr = $answerErr = $categoryErr = '';
 $passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
 
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-/*    if (empty($_POST["questioninput"])) {
-        $questionErr = "question is required";
-    } else {
-        $questioninput = test_input($_POST["questioninput"]);
-    }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty($_POST["answerinput"])) {
-        $answerErr = "answer is required";
-    } else {
-        $answerinput = test_input($_POST["answerinput"]);
-    }
-    $categoryinput = intval($categoryinput);
-    if (empty($_POST["categoryinput"])) {
-        $categoryErr = "Category cant be zero or empty!";
-    } else {
-        $categoryinput = test_input($_POST["categoryinput"]);
-    }
-
-    if (!empty($answerinput) and !empty($questioninput) and !empty($_POST["categoryinput"])) {
-        $db->insert(
-            'QA',
-            array(
-                'question' => $questioninput,
-                'answer' => $answerinput,
-                'category' => $categoryinput
-            )
-        );
-        header('Refresh: 0');
-    }*/
-
-/*    $addnameinput = test_input($_POST["addnameinput"]);
+    $addnameinput = $db->escape(strip_input($_POST["addnameinput"]));
     $addpasswordinput = password_hash($_POST["addpasswordinput"], PASSWORD_DEFAULT);
-    if (!empty($addnameinput) and !empty($addpasswordinput)){
+    if (!empty($addnameinput) and !empty($addpasswordinput) and ($db->select(Users2,"name = '$addnameinput'", 1)->count() == 0)){
         $db->insert(
             'Users2',
             array(
@@ -56,20 +26,22 @@ $passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = 
             )
         );
         header('Refresh: 0');
-    }*/
+    }
 
-//    $namelogin = test_input($_POST["namelogin"]);
-//    $passwordlogin = test_input($_POST["passwordlogin"]);
-//    $Userarray = $db->select(Users2,"name == $namelogin", 1)->result_array();
-//    if(!empty($Userarray)){
-//    if(password_verify($_POST["passwordlogin"], $Userarray["pass"])) {
-//        $_SESSION['username'] = $namelogin;
-//        header("location: welcome.php");
-//    }}
+    $namelogin = $db->escape(strip_input($_POST["namelogin"]));
+    if(!empty($namelogin)){
+        $passwordlogin = strip_input($_POST["passwordlogin"]);
+    $Userarray = $db->select(Users2,"name = '$namelogin'", 1)->row();
+    if(password_verify($passwordlogin, $Userarray->pass)) {
+        $_SESSION['username'] = $namelogin;
+        header('Refresh: 0');
+    }
+    else{
+        echo "login failed";
+    }}
+}
 
-//}
-
-function test_input($data) {
+function strip_input($data) {
 $data = trim($data);
 $data = stripslashes($data);
 $data = htmlentities($data);
@@ -98,7 +70,9 @@ return $data;
 <body>
 
 <div id="accordion">
-<h3>Add an entry test</h3>
+    <?php
+    if($_SESSION['username']) { ?>
+<h3>Add an qestion and answer</h3>
 <form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
 Question:<textarea name="questioninput" rows="5" cols="40"><?php echo $questioninput;?></textarea>
 <span class="error">* <?php echo $questionErr;?></span>
@@ -106,31 +80,30 @@ Question:<textarea name="questioninput" rows="5" cols="40"><?php echo $questioni
 Answer:<textarea name="answerinput" rows="5" cols="40"><?php echo $answerinput;?></textarea>
 <span class="error">* <?php echo $answerErr;?></span>
 <br><br>
-category: <input type="number" name="categoryinput" value="<?php echo $categoryinput;?>">
+category: <input type="text" name="categoryinput" value="$categoryinput">
 <span class="error">* <?php echo $categoryErr;?></span>
-<br><br>
+<br>
+    Select media to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
 <input type="submit" name="submit0" value="Submit">
 </form>
 
 <h3>Add an user</h3>
-<form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
+<form method="post" action="adduser.php">
     Name: <input type="text" name="addnameinput" ><br>
     Password: <input type="password" name="addpasswordinput"><br>
     <br>
     <input type="submit" name="submit1" value="Submit">
 </form>
-
+    <?php }else{ ?>
 <h3>Login as a user</h3>
 <form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
     Name: <input type="text" name="namelogin" ><br>
     Password: <input type="password" name="passwordlogin"><br>
     <br>
     <input type="submit" name="submit2" value="Submit">
-</form>
 
-
-
-    <?php
+</form><?php }
     $addedCategory=array();
     foreach ($QAarray as $question){
 	if(!in_array($question["category"],$addedCategory)){
@@ -148,6 +121,12 @@ category: <input type="number" name="categoryinput" value="<?php echo $categoryi
 </div>
 </div>
 <img src="Under_construction_graphic.gif" alt="Actually, this is the most annoying thing in the universe." >
+<br>
+
+<?php
+if($_SESSION['username']) { ?>
+<p><a href="logout.php" class="btn btn-danger">Sign Out</a></p>
+<?php } ?>
 
 
 </body>

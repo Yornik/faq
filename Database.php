@@ -684,5 +684,16 @@ class Database
         $datarow = $res->fetch_array();
         return $datarow[$field];
     }
+/**
+*
+*Adding strip_input to avoid including index.php
+*/
+
+public function strip_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlentities($data);
+    return $data;
+}
 
 }

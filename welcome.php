@@ -1,3 +1,3 @@
 <?php
 session_start();
-echo "You are logged in as ". $_SESSION['username'];
+var_dump($_SESSION['username']);
