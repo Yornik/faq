@@ -101,7 +101,17 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
 		echo "<div id=\"accordion-inner\"> \n";
 	}
         echo "<h3>{$question["question"]}</h3> \n";
-        echo "<div><P>{$question["answer"]}</P></div> \n";
+        echo "<div><P>{$question["answer"]}";
+        if($question["media"]){
+            if(strtolower(pathinfo($question["media"],PATHINFO_EXTENSION))== 'mp4'){
+                echo"<br> <video width=\"600\" controls>";
+                echo" <source src={$question["media"]} type=\"video/mp4\">";
+                echo" </video>";
+            }else{
+                echo"<br> <img src={$question["media"]} >";
+            }
+        }
+        echo"</P></div> \n";
     }
     ?>
 </div>
