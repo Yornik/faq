@@ -99,7 +99,7 @@ return $data;
 
 <div id="accordion">
 <h3>Add an entry</h3>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
 Question:<textarea name="questioninput" rows="5" cols="40"><?php echo $questioninput;?></textarea>
 <span class="error">* <?php echo $questionErr;?></span>
 <br><br>
@@ -113,7 +113,7 @@ category: <input type="number" name="categoryinput" value="<?php echo $categoryi
 </form>
 
 <h3>Add an user</h3>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
     Name: <input type="text" name="addnameinput" ><br>
     Password: <input type="password" name="addpasswordinput"><br>
     <br>
@@ -121,7 +121,7 @@ category: <input type="number" name="categoryinput" value="<?php echo $categoryi
 </form>
 
 <h3>Login as a user</h3>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
     Name: <input type="text" name="namelogin" ><br>
     Password: <input type="password" name="passwordlogin"><br>
     <br>
