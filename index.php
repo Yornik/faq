@@ -15,7 +15,7 @@ $questionErr = $answerErr = $categoryErr = '';
 $passwordlogin= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["questioninput"])) {
+/*    if (empty($_POST["questioninput"])) {
         $questionErr = "question is required";
     } else {
         $questioninput = test_input($_POST["questioninput"]);
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             )
         );
         header('Refresh: 0');
-    }
+    }*/
 
 /*    $addnameinput = test_input($_POST["addnameinput"]);
     $addpasswordinput = password_hash($_POST["addpasswordinput"], PASSWORD_DEFAULT);
