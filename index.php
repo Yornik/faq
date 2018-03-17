@@ -12,7 +12,7 @@ $QAarray = $db->select(QA,"id != 0", 200, 'category ASC')->result_array();
 
 
 $questionErr = $answerErr = $categoryErr = '';
-$passwordlogin= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
+$passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
 
 //if ($_SERVER["REQUEST_METHOD"] == "POST") {
 /*    if (empty($_POST["questioninput"])) {
@@ -67,7 +67,7 @@ $passwordlogin= $namelogin = $questioninput = $answerinput =  $categoryinput = $
 //        header("location: welcome.php");
 //    }}
 
-}
+//}
 
 function test_input($data) {
 $data = trim($data);
