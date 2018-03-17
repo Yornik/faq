@@ -1,11 +1,15 @@
 <?php
+
+session_start([
+    'cookie_lifetime' => 86400,
+]);
+
 require_once('Database.php');
 
 //reading the database (should make a install script so you can change the password and db/username.
 $db = new Database(faqapp, faqapp, bmS7GXQPLaJrFvxgZMBM8TvJQXAN9dknK2R3RU4DSmYALT84sTz6aqsHqvJQS6efRVAFYs);
 $QAarray = $db->select(QA,"id != 0", 200, 'category ASC')->result_array();
-$Userarray = $db->select(Users2,"id != 0", 200)->result_array();
-echo var_dump($Userarray);
+
 
 $questionErr = $answerErr = $categoryErr = '';
 $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
@@ -43,8 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $addnameinput = test_input($_POST["addnameinput"]);
     $addpasswordinput = password_hash($_POST["addpasswordinput"], PASSWORD_DEFAULT);
-    var_dump($addpasswordinput);
-    var_dump($addnameinput);
     if (!empty($addnameinput) and !empty($addpasswordinput)){
         $db->insert(
             'Users2',
@@ -55,6 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
         header('Refresh: 0');
     }
+    $namelogin = test_input($_POST["namelogin"]);
+    $Userarray = $db->select(Users2,"name != $namelogin", 1)->result_array();
+    if (!empty($Userarray) and password_verify($_POST["passwordlogin"], $Userarray["pass"]) ) {
+        $_SESSION['username'] = $namelogin;
+        header("location: welcome.php");
+    };
 }
 
 function test_input($data) {
@@ -107,6 +115,15 @@ category: <input type="number" name="categoryinput" value="<?php echo $categoryi
     <br>
     <input type="submit" name="submit1" value="Submit">
 </form>
+
+<h3>Login as a user</h3>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    Name: <input type="text" name="namelogin" ><br>
+    Password: <input type="password" name="passwordlogin"><br>
+    <br>
+    <input type="submit" name="submit2" value="Submit">
+</form>
+
 
 
     <?php
