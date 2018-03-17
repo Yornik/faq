@@ -14,7 +14,7 @@ $QAarray = $db->select(QA,"id != 0", 200, 'category ASC')->result_array();
 $questionErr = $answerErr = $categoryErr = '';
 $passwordlogin= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
 /*    if (empty($_POST["questioninput"])) {
         $questionErr = "question is required";
     } else {
