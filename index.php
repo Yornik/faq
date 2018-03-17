@@ -98,7 +98,7 @@ return $data;
 <body>
 
 <div id="accordion">
-<h3>Add an entry</h3>
+<h3>Add an entry test</h3>
 <form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
 Question:<textarea name="questioninput" rows="5" cols="40"><?php echo $questioninput;?></textarea>
 <span class="error">* <?php echo $questionErr;?></span>
