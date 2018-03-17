@@ -8,25 +8,12 @@ require_once('Database.php');
 include('dbconnection.php');
 
 
-$QAarray = $db->select('QA',"id != 0", 200, 'category ASC')->result_array();
+$QAarray = $db->select('QA',"id != 0", 2000, 'category ASC')->result_array();
 
 $questionErr = $answerErr = $categoryErr = '';
 $passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $addnameinput = $db->escape(strip_input($_POST["addnameinput"]));
-    $addpasswordinput = password_hash($_POST["addpasswordinput"], PASSWORD_DEFAULT);
-    if (!empty($addnameinput) and !empty($addpasswordinput) and ($db->select(Users2,"name = '$addnameinput'", 1)->count() == 0)){
-        $db->insert(
-            'Users2',
-            array(
-                'name' => $addnameinput,
-                'pass' => $addpasswordinput
-            )
-        );
-        header('Refresh: 0');
-    }
 
     $namelogin = $db->escape(strip_input($_POST["namelogin"]));
     if(!empty($namelogin)){
@@ -73,18 +60,17 @@ return $data;
     <?php
     if($_SESSION['username']) { ?>
 <h3>Add an qestion and answer</h3>
-<form method="post" action="<?php echo htmlentities($_SERVER["PHP_SELF"]);?>">
+<form method="post" action="addquestion.php" enctype="multipart/form-data">
 Question:<textarea name="questioninput" rows="5" cols="40"><?php echo $questioninput;?></textarea>
 <span class="error">* <?php echo $questionErr;?></span>
 <br><br>
 Answer:<textarea name="answerinput" rows="5" cols="40"><?php echo $answerinput;?></textarea>
 <span class="error">* <?php echo $answerErr;?></span>
 <br><br>
-category: <input type="text" name="categoryinput" value=<?php echo $categoryinput;?>">
+category: <input type="text" name="categoryinput" value=<?php echo $categoryinput;?>>
 <span class="error">* <?php echo $categoryErr;?></span>
 <br>
-    Select media to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
+    Select media to upload: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
 <input type="submit" name="submit0" value="Submit">
 </form>
 

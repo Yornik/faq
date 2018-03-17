@@ -5,19 +5,19 @@ include('dbconnection.php');
 if (empty($_POST["questioninput"])) {
     $questionErr = "question is required";
 } else {
-    $questioninput = strip_input($_POST["questioninput"]);
+    $questioninput = $db->strip_input($_POST["questioninput"]);
 }
 
 if (empty($_POST["answerinput"])) {
     $answerErr = "answer is required";
 } else {
-    $answerinput = strip_input($_POST["answerinput"]);
+    $answerinput = $db->strip_input($_POST["answerinput"]);
 }
 
 if (empty($_POST["categoryinput"])) {
     $categoryErr = "Category cant be empty!";
 } else {
-    $categoryinput = strip_input($_POST["categoryinput"]);
+    $categoryinput = $db->strip_input($_POST["categoryinput"]);
 }
 
 $target_dir = "uploads/";
@@ -58,6 +58,5 @@ if (!empty($answerinput) and !empty($questioninput) and !empty($_POST["categoryi
             'category' => $categoryinput,
             'media'   => $target_file
         )
-    );
-    header('Refresh: 0');
-}
+    );}
+    header("location: index.php");
