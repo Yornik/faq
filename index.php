@@ -59,13 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $namelogin = test_input($_POST["namelogin"]);
-//    $passwordlogin = test_input($_POST["passwordlogin"]);
+    $passwordlogin = test_input($_POST["passwordlogin"]);
 //    $Userarray = $db->select(Users2,"name == $namelogin", 1)->result_array();
-    if(!empty($Userarray)){
-    if(password_verify($_POST["passwordlogin"], $Userarray["pass"])) {
-        $_SESSION['username'] = $namelogin;
-        header("location: welcome.php");
-    }}
+//    if(!empty($Userarray)){
+//    if(password_verify($_POST["passwordlogin"], $Userarray["pass"])) {
+//        $_SESSION['username'] = $namelogin;
+//        header("location: welcome.php");
+//    }}
 
 }
 
