@@ -1,8 +1,8 @@
 <?php
 
-session_start([
+/*session_start([
     'cookie_lifetime' => 86400,
-]);
+]);*/
 
 require_once('Database.php');
 
