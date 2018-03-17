@@ -80,7 +80,7 @@ Question:<textarea name="questioninput" rows="5" cols="40"><?php echo $questioni
 Answer:<textarea name="answerinput" rows="5" cols="40"><?php echo $answerinput;?></textarea>
 <span class="error">* <?php echo $answerErr;?></span>
 <br><br>
-category: <input type="text" name="categoryinput" value="$categoryinput">
+category: <input type="text" name="categoryinput" value=<?php echo $categoryinput;?>">
 <span class="error">* <?php echo $categoryErr;?></span>
 <br>
     Select media to upload:
