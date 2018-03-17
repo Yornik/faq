@@ -12,7 +12,7 @@ $QAarray = $db->select(QA,"id != 0", 200, 'category ASC')->result_array();
 
 
 $questionErr = $answerErr = $categoryErr = '';
-$questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
+$passwordlogin= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["questioninput"])) {
@@ -58,8 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Refresh: 0');
     }
 
-    $namelogin = test_input($_POST["namelogin"]);
-    $passwordlogin = test_input($_POST["passwordlogin"]);
+//    $namelogin = test_input($_POST["namelogin"]);
+//    $passwordlogin = test_input($_POST["passwordlogin"]);
 //    $Userarray = $db->select(Users2,"name == $namelogin", 1)->result_array();
 //    if(!empty($Userarray)){
 //    if(password_verify($_POST["passwordlogin"], $Userarray["pass"])) {
