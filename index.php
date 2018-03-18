@@ -34,7 +34,14 @@ $passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = 
     </script>
 </head>
 <body>
-
+<?php
+if(!$_SESSION['username']) { ?>
+<form method="post" action="login.php">
+    Name: <input type="text" name="namelogin" >
+    Password: <input type="password" name="passwordlogin">
+    <input type="submit" name="submit2" value="Login">
+</form>
+<?php } ?>
 <div id="accordion">
     <?php
     if($_SESSION['username']) { ?>
@@ -60,15 +67,8 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
     <br>
     <input type="submit" name="submit1" value="Submit">
 </form>
-    <?php }else{ ?>
-<h3>Login as a user</h3>
-<form method="post" action="login.php">
-    Name: <input type="text" name="namelogin" ><br>
-    Password: <input type="password" name="passwordlogin"><br>
-    <br>
-    <input type="submit" name="submit2" value="Submit">
-
-</form><?php }
+    <?php } ?>
+<?php
     $addedCategory=array();
     foreach ($QAarray as $question){
 	if(!in_array($question["category"],$addedCategory)){
@@ -95,8 +95,6 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
     ?>
 </div>
 </div>
-<img src="Under_construction_graphic.gif" alt="Actually, this is the most annoying thing in the universe." >
-<br>
 
 <?php
 if($_SESSION['username']) { ?>
