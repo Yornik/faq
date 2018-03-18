@@ -2,24 +2,33 @@
 include('Database.php');
 include('dbconnection.php');
 
+//testing if a field are filled in and strip them from ugly stuff
+
 if (empty($_POST["questioninput"])) {
-    $questionErr = "question is required";
+    header("Refresh:3;URL=index.php");
+    echo 'no question received, You are redirected in 5 sec.';
+    exit;
 } else {
     $questioninput = $db->strip_input($_POST["questioninput"]);
 }
 
 if (empty($_POST["answerinput"])) {
-    $answerErr = "answer is required";
+    header("Refresh:3;URL=index.php");
+    echo 'no answer received, You are redirected in 5 sec.';
+    exit;
 } else {
     $answerinput = $db->strip_input($_POST["answerinput"]);
 }
 
 if (empty($_POST["categoryinput"])) {
-    $categoryErr = "Category cant be empty!";
+    header("Refresh:3;URL=index.php");
+    echo 'no category received, You are redirected in 5 sec.';
+    exit;
 } else {
     $categoryinput = $db->strip_input($_POST["categoryinput"]);
 }
 
+//only do these test when there is a file to process
 if(basename($_FILES["fileToUpload"]["name"])) {
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -44,6 +53,8 @@ if(basename($_FILES["fileToUpload"]["name"])) {
         echo "Sorry, file is not uplouded, You are redirected in 5 sec.";
         exit;}
 }
+
+//add everything to the database
 
 if (!empty($answerinput) and !empty($questioninput) and !empty($_POST["categoryinput"])) {
     $db->insert(

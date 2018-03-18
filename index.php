@@ -7,10 +7,10 @@ session_start([
 require_once('Database.php');
 include('dbconnection.php');
 
-
+// getting data form the database for the main view
 $QAarray = $db->select('QA',"id != 0", 2000, 'category ASC')->result_array();
 
-$questionErr = $answerErr = $categoryErr = '';
+// Make sure that all the forms are empty
 $passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = $addnameinput = $addpasswordinput = '';
 
 ?>
@@ -35,26 +35,28 @@ $passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = 
 </head>
 <body>
 <?php
+// show a login if there is no username known.
 if(!$_SESSION['username']) { ?>
-<form method="post" action="login.php">
+<form align="right" method="post" action="login.php">
     Name: <input type="text" name="namelogin" >
     Password: <input type="password" name="passwordlogin">
-    <input type="submit" name="submit2" value="Login">
+    <input class="ui-button ui-widget ui-corner-all" type="submit" name="submit2" value="Login">
 </form>
 <?php } ?>
 <div id="accordion">
     <?php
+    //If there is a username make it possible to add questions, users and media THIS IS NOT SAFE
     if($_SESSION['username']) { ?>
 <h3>Add an qestion and answer</h3>
 <form method="post" action="addquestion.php" enctype="multipart/form-data">
 Question:<textarea name="questioninput" rows="5" cols="40"><?php echo $questioninput;?></textarea>
-<span class="error">* <?php echo $questionErr;?></span>
+<span class="error">*</span>
 <br><br>
 Answer:<textarea name="answerinput" rows="5" cols="40"><?php echo $answerinput;?></textarea>
-<span class="error">* <?php echo $answerErr;?></span>
+<span class="error">*</span>
 <br><br>
 category: <input type="text" name="categoryinput" value=<?php echo $categoryinput;?>>
-<span class="error">* <?php echo $categoryErr;?></span>
+<span class="error">*</span>
 <br>
     Select media to upload: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
 <input type="submit" name="submit0" value="Submit">
@@ -71,7 +73,9 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
 <?php
     $addedCategory=array();
     foreach ($QAarray as $question){
+        //make a outer div if the category is not already added to the page
 	if(!in_array($question["category"],$addedCategory)){
+	    //making sure to close the div after the first category
 	    if($addedCategory != null){
 		    echo "</div> \n \n";
 		}
@@ -79,15 +83,17 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
 		array_push($addedCategory, $question["category"]);
 		echo "<div id=\"accordion-inner\"> \n";
 	}
+	//show the questions and answers
         echo "<h3>{$question["question"]}</h3> \n";
         echo "<div><P>{$question["answer"]}";
+        //if there is media file display it as video if mp4 and as image if it is a image.
         if($question["media"]){
             if(strtolower(pathinfo($question["media"],PATHINFO_EXTENSION))== 'mp4'){
-                echo"<br> <video width=\"600\" controls>";
+                echo"<br> <video width=\"720\" controls>";
                 echo" <source src={$question["media"]} type=\"video/mp4\">";
                 echo" </video>";
             }else{
-                echo"<br> <img src={$question["media"]} >";
+                echo"<br> <img src={$question["media"]} width=\"720\"} >";
             }
         }
         echo"</P></div> \n";

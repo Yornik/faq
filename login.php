@@ -3,6 +3,7 @@ include('Database.php');
 include('dbconnection.php');
 session_start();
 
+//testing if a field are filled in and strip them from ugly stuff
 $namelogin = $db->escape($db->strip_input($_POST["namelogin"]));
 if(!empty($namelogin)){
     $passwordlogin = $db->strip_input($_POST["passwordlogin"]);

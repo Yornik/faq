@@ -14,9 +14,10 @@ if ($conn->connect_error) {
 // sql to create table
 $sql = "CREATE TABLE QA (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-question VARCHAR(255) NOT NULL,
-answer VARCHAR(255) NOT NULL,
-category VARCHAR NOT NULL
+question VARCHAR(6000) NOT NULL,
+answer VARCHAR(6000) NOT NULL,
+category VARCHAR(255) NOT NULL,
+media    VARCHAR(1000)
 )";
 
 if ($conn->query($sql) === TRUE) {
