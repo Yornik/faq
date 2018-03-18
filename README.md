@@ -5,18 +5,18 @@ website in php. So pardon my mess.
 
 # Installing
 - git clone 
-- Install lamp stack
-- edit php.ini settings for bigger file support
-- edit dbconnection.php with the mysql username dbname and password
-- go to website.tld/addfirstuser.php add your first user here.
-- now you can go to website.tld and login as that user and add entrys 
+- Install lamp stack + the right php extensions.
+- Edit php.ini settings for bigger file support
+- Edit dbconnection.php with the mysql username data base name and password.
+- Go to website.tld/addtable.php It should tell you that it made 2 tables in your db.
+- Go to website.tld/addfirstuser.php add your first user here.
+- Now you can go to website.tld and login as that user and add entry.
 
 # Description
-a simple FAQ-system with categories. These categories
-can be divided into subcategories. The entries can be created and modified by users,
-if they have the proper permissions. Entries consist of a question and answer and
-can contain media, such as images or videos. A user has a
-username and password.
+A simple FAQ-system with categories. These categories
+can be divided into subcategories. The entries can be created and be deleted by users.
+Entries consist of a question and answer and can contain media, such as a image or a video.
+A user has a username and password.
 
 
 
