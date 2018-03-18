@@ -23,18 +23,18 @@ media    VARCHAR(1000)
 $sql1 = "CREATE TABLE Users2 (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 name VARCHAR(600) NOT NULL,
-pass VARCHAR(600) NOT NULL,
+pass VARCHAR(600) NOT NULL
 )";
 
 if ($conn->query($sql0) === TRUE) {
-    echo "Table QA created successfully";
+    echo "Table QA created successfully|";
 } else {
     echo "Error creating table QA: " . $conn->error;
 }
 if ($conn->query($sql1) === TRUE) {
     echo "Table Users2 created successfully";
 } else {
-    echo "Error creating table Users2: " . $conn->error;
+    echo "|Error creating table Users2: " . $conn->error;
 }
 $conn->close();
 ?>
