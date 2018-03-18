@@ -1,4 +1,17 @@
-# faq
+#DISCLAIMER
+Nobody should run this code on anything close to a production system it is hacked buggy and my first "real" 
+website in php. So pardon my mess.
+
+
+# Installing
+- git clone 
+- Install lamp stack
+- edit php.ini settings for bigger file support
+- edit dbconnection.php with the mysql username dbname and password
+- go to website.tld/addfirstuser.php add your first user here.
+- now you can go to website.tld and login as that user and add entrys 
+
+# Description
 a simple FAQ-system with categories. These categories
 can be divided into subcategories. The entries can be created and modified by users,
 if they have the proper permissions. Entries consist of a question and answer and
@@ -11,7 +24,7 @@ username and password.
 - [x] Added a git repo to work in.
 - [X] Make a basic system where I can add questions and answers in a database.
 - [X] Display those q&a in the website.
-- [ ] remove or edit questions and answers.
+- [X] remove questions and answers.
 - [X] Make sure we sanitize those answers and questions on scripting an mysql queries (NO NASTY SHIT ON MY WATCH)
 - [X] Add categories to the database and to the qa
 - [X] Sort Q & A by categories and use harmonica menus
@@ -19,6 +32,6 @@ username and password.
 - [X] Login system where only logged in users can edit, add, delete the questions or the users
 - [X] Make sure we cant do "evil" stuff with the login system.
 - [X] Add upload function to the website for media and a way to link those to the questions and show them in there.
-- [ ] Documentation and code comments.
+- [X] Documentation and code comments.
 - [ ] Refactor the code.
 - [ ] We should present a nice install script.(maybe docker container, linux packages or something else)

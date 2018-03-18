@@ -35,7 +35,7 @@ $passwordloginc= $namelogin = $questioninput = $answerinput =  $categoryinput = 
 </head>
 <body>
 <?php
-// show a login if there is no username known.
+// show a login if there is no username known to the php session.
 if(!$_SESSION['username']) { ?>
 <form align="right" method="post" action="login.php">
     Name: <input type="text" name="namelogin" >
@@ -59,7 +59,7 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
 <span class="error">*</span>
 <br>
     Select media to upload: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-<input type="submit" name="submit0" value="Submit">
+<input class="ui-button ui-widget ui-corner-all" type="submit" name="submit0" value="Submit">
 </form>
 
 <h3>Add an user</h3>
@@ -67,7 +67,7 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
     Name: <input type="text" name="addnameinput" ><br>
     Password: <input type="password" name="addpasswordinput"><br>
     <br>
-    <input type="submit" name="submit1" value="Submit">
+    <input class="ui-button ui-widget ui-corner-all" type="submit" name="submit1" value="Submit">
 </form>
     <?php } ?>
 <?php
@@ -89,14 +89,21 @@ category: <input type="text" name="categoryinput" value=<?php echo $categoryinpu
         //if there is media file display it as video if mp4 and as image if it is a image.
         if($question["media"]){
             if(strtolower(pathinfo($question["media"],PATHINFO_EXTENSION))== 'mp4'){
-                echo"<br> <video width=\"720\" controls>";
+                echo"<br> <video width=\"420\" controls>";
                 echo" <source src={$question["media"]} type=\"video/mp4\">";
                 echo" </video>";
             }else{
                 echo"<br> <img src={$question["media"]} width=\"720\"} >";
             }
         }
-        echo"</P></div> \n";
+        //add a remove button if user is logged in THIS IS NOT SECURE anybody could send a header too deleteqestion.php
+if($_SESSION['username']) {
+    echo "<form action=\"Deletequestion.php\" method=\"post\">";
+    echo "<input id=\"id\" name=\"id\" type=\"hidden\" value=\"{$question["id"]}\">";
+    echo "<input class=\"ui-button ui-widget ui-corner-all\" type=\"submit\" name=\"Delete\" value=\"DELETE\" />";
+    echo "</form>";}
+    echo "</P></div> \n";
+
     }
     ?>
 </div>
