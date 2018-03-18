@@ -11,8 +11,12 @@ if (!empty($addnameinput) and !empty($addpasswordinput) and ($db->select('Users2
             'name' => $addnameinput,
             'pass' => $addpasswordinput
         )
-    );}
-    elseif($db->select('Users2',"name = '$addnameinput'", 1)->count() == 0) {echo 'Username already exist';}
-    else{echo "something went wrong rederecting to main page in 2 seconds";
-    sleep(5);}
-    header("location: index.php");
+    );
+    header("Refresh:0;URL=index.php");}
+    elseif($db->select('Users2',"name = '$addnameinput'", 1)->count()) {
+    header("Refresh:3;URL=index.php");
+    echo 'Username already exist, You are redirected in 5 sec.';
+    }
+    else{
+header("Refresh:3;URL=index.php");
+echo "non valid input, You are redirected in 5 sec.";}
